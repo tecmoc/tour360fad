@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const miniCssExtractPlugin = require('mini-css-extract-plugin');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   mode: "development",
@@ -11,7 +12,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "[name][contenthash].js",
     clean: true,
-    assetModuleFilename: '[name][ext]'
+    assetModuleFilename: 'assets/[name][ext]'
   },
   devtool: "source-map",
   devServer: {
@@ -19,16 +20,47 @@ module.exports = {
       directory: path.join(__dirname, "dist"),
     },
     compress: true,
-    port: 9000,
+    port: 8080,
     open: true,
     historyApiFallback: true,
     hot: true,
   },
   module: {
     rules: [
+       {
+        mimetype: 'image/svg+xml',
+        scheme: 'data',
+        type: 'asset/resource',
+        generator: {
+          filename: 'icons/[hash].svg'
+        }
+      },
       {
-        test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        test: /\.(scss)$/,
+        use: [
+          {
+            // Adds CSS to the DOM by injecting a `<style>` tag
+            //loader: 'style-loader'
+            // Extracts CSS for each JS file that includes CSS
+            loader: miniCssExtractPlugin.loader
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: () => [
+                  require('autoprefixer')
+                ]
+              }
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }
+        ]
       },
       {
         test: /\.(?:js|mjs|cjs)$/,
@@ -50,10 +82,11 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Weypack",
+      title: "Tour 360 FAD",
       filename: "index.html",
       template: "src/template.html",
     }),
-    new BundleAnalyzerPlugin(),
+    new miniCssExtractPlugin()
+    // new BundleAnalyzerPlugin(),
   ],
 };
