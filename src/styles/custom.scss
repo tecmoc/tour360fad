@@ -1,0 +1,15 @@
+.caver {
+  width: 20%;
+  height: auto;
+  display: block;
+  margin: 1rem 1rem;
+}
+
+h1 {
+  color: $primary;
+}
+
+.btn-primary {
+  background-color: var(--fad-secondary);
+  border-color: var(--fad-btn-hover-color);
+}

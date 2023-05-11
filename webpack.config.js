@@ -86,7 +86,9 @@ module.exports = {
       filename: "index.html",
       template: "src/template.html",
     }),
-    new miniCssExtractPlugin()
+    new miniCssExtractPlugin({
+      filename: "style.css"
+    })
     // new BundleAnalyzerPlugin(),
   ],
 };

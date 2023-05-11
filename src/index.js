@@ -1,7 +1,7 @@
 // Import all of Bootstrap's JS
 import * as bootstrap from 'bootstrap';
 // Import our custom CSS
-import './styles/main.scss';
+import './main.scss';
 import caver from './assets/caver.jpg';
 
 const caverImg = document.getElementById('caver');
