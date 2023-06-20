@@ -1,10 +1,11 @@
-// Import all of Bootstrap's JS
-import * as bootstrap from 'bootstrap';
 // Import our custom CSS
 import './main.scss';
-import caver from './assets/caver.jpg';
 
-const caverImg = document.getElementById('caver');
+// Import all of Bootstrap's JS
+import * as bootstrap from 'bootstrap';
 
-caverImg.src = caver;
+//Images
+import './js/images';
+
+//Consola
 console.log("Hola Weypack");

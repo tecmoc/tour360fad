@@ -9,21 +9,56 @@
   <meta name="generator" content="Hugo 0.104.2">
   <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
-<body>
-  <header class="">
-    
-  </header>
+<body class="background-image">
+<header class="">
+  <nav class="navbar fixed-top navbar-expand-md bg-light">
+    <div class="container-fluid">
+      <div class="navbar-brand d-flex align-items-center">
+        <a href="#" class="me-3 ms-3" style="height: fit-content"><img alt="FAD" id="fadLogo" class="fad-logo"></a>
+        <a href="#"><img alt="Inicio" id="iconInicio" class="icon-menu"> Tour 360º</a>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="justify-content-between collapse navbar-collapse" id="menuPrincipal">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="#" class="nav-link"><img alt="Mapa" id="iconBrujula" class="icon-menu">Mapa</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link"><img alt="Esconde íconos" id="iconEsconder" class="icon-menu">Esconder íconos</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav"><li class="nav-item">
+          <a href="#" class="nav-link"><img alt="Anterior" id="iconAnterior" class="icon-menu icon-menu-flecha"> Anterior</a>
+        </li>
+        <ul class="navbar-nav"><li class="nav-item">
+          <a href="#" class="nav-link">Siguiente <img alt="Siguiente" id="iconSiguiente" class="icon-menu icon-menu-flecha"></a>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
 
 <main class="flex-shrink-0">
-  <div class="container py-4 px-3 mx-auto">
-    <h1>Hello, Bootstrap and Webpack!</h1>
-    <img alt="Caver" id="caver" class="caver">
-    <button class="btn btn-primary">Primary button</button>
-  </div>
+  
 </main>
 
 <footer class="">
-
+  <nav id="menuSecundario" class="navbar fixed-bottom navbar-expand navbar-dark bg-dark">
+    <div class="container-fluid">
+      <div class="justify-content-between">
+        <div class="navbar-nav">
+          <a href="#" class="nav-link">LIPEVRA</a><span>|</span>
+          <a href="#" class="nav-link">LABRE</a><span>|</span>
+          <a href="#" class="nav-link">FAD</a><span>|</span>
+          <a href="#" class="nav-link">UNAM</a><span>|</span>
+          <span>© 2023</span>
+        </div>
+      </div>
+    </div>
+  </nav>
 </footer>
 
 </body>

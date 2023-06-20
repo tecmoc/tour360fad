@@ -4,20 +4,20 @@ const miniCssExtractPlugin = require('mini-css-extract-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
   entry: {
-    bundle: path.resolve(__dirname, "src/index.js"),
+    bundle: path.resolve(__dirname, 'src/index.js'),
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "[name][contenthash].js",
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name][contenthash].js',
     clean: true,
     assetModuleFilename: 'assets/[name][ext]'
   },
-  devtool: "source-map",
+  devtool: 'source-map',
   devServer: {
     static: {
-      directory: path.join(__dirname, "dist"),
+      directory: path.join(__dirname, 'dist'),
     },
     compress: true,
     port: 8080,
@@ -27,7 +27,7 @@ module.exports = {
   },
   module: {
     rules: [
-       {
+      {
         mimetype: 'image/svg+xml',
         scheme: 'data',
         type: 'asset/resource',
@@ -82,12 +82,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Tour 360 FAD",
-      filename: "index.html",
-      template: "src/template.html",
+      title: 'FAD-Tour 360',
+      filename: 'index.html',
+      template: 'src/template.html',
     }),
     new miniCssExtractPlugin({
-      filename: "style.css"
+      filename: 'style.css'
     })
     // new BundleAnalyzerPlugin(),
   ],

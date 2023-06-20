@@ -1,3 +1,5 @@
+//Bootstrap 5
+
 // Option A: Include all of Bootstrap
 // Include any default variable overrides here (though functions won't be available)
 // @import "~bootstrap/scss/bootstrap";
@@ -15,7 +17,12 @@ $oro: #C5911E;
 $primary: $azul;
 $secondary: $oro;
 $link-color: $secondary;
-
+$link-decoration: none;
+$navbar-light-color: rgba($primary, 0.75);
+$navbar-light-hover-color: rgba($primary, 1);
+$navbar-brand-font-size: 0.875rem;
+$nav-link-font-size: 0.875rem;
+$dark: #495057;
 
 // 3. Include remainder of required Bootstrap stylesheets
 @import "~bootstrap/scss/variables";
@@ -46,8 +53,8 @@ $body-color: $gray-800;
 @import "~bootstrap/scss/transitions";
 // @import "~bootstrap/scss/dropdown";
 // @import "~bootstrap/scss/button-group";
-// @import "~bootstrap/scss/nav";
-// @import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
 // @import "~bootstrap/scss/card";
 // @import "~bootstrap/scss/accordion";
 // @import "~bootstrap/scss/breadcrumb";
