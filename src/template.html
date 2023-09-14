@@ -8,6 +8,7 @@
   <meta name="author" content="">
   <meta name="generator" content="Hugo 0.104.2">
   <title><%= htmlWebpackPlugin.options.title %></title>
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
 </head>
 <body class="background-image">
 <header class="">
@@ -42,7 +43,18 @@
 </header>
 
 <main class="flex-shrink-0">
-  
+  <div id="container">
+    <a-scene>
+      <a-sky src="assets/01entrada.JPG" rotation="0 -130 0"></a-sky>
+      <a-text
+        font="kelsonsans"
+        value="Puy de Sancy, France" 
+        width="6" 
+        position="-2.5 0.25 -1.5"
+        rotation="0 15 0">
+      </a-text>
+    </a-scene>
+  </div>
 </main>
 
 <footer class="">
