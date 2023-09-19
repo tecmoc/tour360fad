@@ -5,7 +5,7 @@ import IconEsconder from '../assets/ojo-cerrado.svg';
 import IconAnterior from '../assets/anterior.svg';
 import IconSiguiente from '../assets/siguiente.svg';
 import IconInicio from '../assets/inicio.svg';
-// import BackgroundSample from '../assets/imagen360.jpg';
+import BackgroundSample from '../assets/imagen360.jpg';
 // import Unam from '../assets/unam.png';
 
 // const caverImg = document.getElementById("caver");
@@ -15,7 +15,7 @@ const iconEsconder = document.getElementById('iconEsconder');
 const iconSiguiente = document.getElementById('iconSiguiente');
 const iconAnterior = document.getElementById('iconAnterior');
 const iconInicio = document.getElementById('iconInicio');
-// const backgroundSample = document.getElementById('backgroundImageSample');
+const backgroundSample = document.getElementById('backgroundImageSample');
 // const unamEscudo = document.getElementById('unamEscudo');
 
 // caverImg.src = Caver;

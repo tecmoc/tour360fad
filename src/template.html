@@ -9,6 +9,10 @@
   <meta name="generator" content="Hugo 0.104.2">
   <title><%= htmlWebpackPlugin.options.title %></title>
   <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-layout-component@4.x.x/dist/aframe-layout-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.jss"></script>
 </head>
 <body class="background-image">
 <header class="">
@@ -45,14 +49,51 @@
 <main class="flex-shrink-0">
   <div id="container">
     <a-scene>
-      <a-sky src="assets/01entrada.JPG" rotation="0 -130 0"></a-sky>
+      <!-- Texto. -->
       <a-text
+        
         font="kelsonsans"
-        value="Puy de Sancy, France" 
-        width="6" 
-        position="-2.5 0.25 -1.5"
-        rotation="0 15 0">
+        value="Bienvenido" 
+        width="3" 
+        position="0.1 1.45 -1.6"
+        rotation="0 -45 0.2">
       </a-text>
+
+      <a-assets>
+        <!-- Audio. -->
+        <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+        <!-- Images. -->
+        <img id="01entrada" crossorigin="anonymous" src="assets/01entrada.JPG">
+        <img id="01-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
+        <!-- <img id="02torniquetes" crossorigin="anonymous" src="assets/02torniquetes.jpg">
+        <img id="02-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
+        <img id="03experimento" crossorigin="anonymous" src="assets/03experimento.jpg">
+        <img id="03-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg"> -->
+      </a-assets>
+
+      <!-- 360-degree image. -->
+      <a-sky id="image-360" src="#01entrada" rotation="0 -130 0" radius="500"></a-sky>
+
+      <!-- Link template we will build. -->
+      <a-entity 
+        class="link"
+        geometry="primitive: plane; height: 1; width: 1"
+        material="shader: flat; color: #C5911E; src: #01-thumb"
+        position="3.5 2 -2.5"
+        rotation="0 -45 0.2"
+        sound="on: click; src: #click-sound"
+        animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 3.4 2 -2.4; loop: true">
+      ></a-entity>
+
+      <!-- Camera + Cursor. -->
+      <a-camera>
+        <a-cursor
+          id="cursor"
+          animation__click="property: scale; from: 0.1 0.1 0.1; to: 1 1 1; easing: easeInCubic; dur: 150; startEvents: click"
+          animation__clickreset="property: scale; to: 0.1 0.1 0.1; dur: 1; startEvents: animationcomplete__click"
+          animation__fusing="property: scale; from: 1 1 1; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: fusing"
+          ></a-cursor>
+      </a-camera>
     </a-scene>
   </div>
 </main>
