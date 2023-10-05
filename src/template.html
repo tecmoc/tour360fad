@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,13 +8,27 @@
   <meta name="author" content="">
   <meta name="generator" content="Hugo 0.104.2">
   <title><%= htmlWebpackPlugin.options.title %></title>
-  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-  <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
-  <script src="https://unpkg.com/aframe-layout-component@4.x.x/dist/aframe-layout-component.min.js"></script>
-  <script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"></script>
-  <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.jss"></script>
+  <!-- A-frame -->
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
+  <!-- Image link template to be reused. -->
+  <script id="link" type="text/html">
+    <a-entity class="link"
+      geometry="primitive: plane; height: 1; width: 1"
+      material="shader: flat; color: #C5911E; src: ${thumb}"
+      event-set__mouseenter="scale: 1.2 1.2 1"
+      event-set__mouseleave="scale: 1 1 1"
+      event-set__click="_target: #image-360; _delay: 300; material.src: ${src}"
+      proxy-event="event: click; to: #image-360; as: fade"
+      sound="on: click; src: #click-sound">
+    </a-entity>
+  </script>
 </head>
-<body class="background-image">
+<body>
+
 <header class="">
   <nav class="navbar fixed-top navbar-expand-md bg-light">
     <div class="container-fluid">
@@ -46,57 +60,55 @@
   </nav>
 </header>
 
-<main class="flex-shrink-0">
-  <div id="container">
-    <a-scene>
-      <!-- Texto. -->
-      <a-text
+
+  <a-scene>
+    <!-- Texto. -->
+    <a-text
+      font="kelsonsans"
+      value="Bienvenido" 
+      width="3" 
+      position="0.1 -0.17 -1.6"
+      rotation="0.5 -45 0.2">
+    </a-text>
+    <!-- Assets -->
+    <a-assets>
+      <img id="01-entrada" crossorigin="anonymous" src="assets/01entrada.jpg">
+      <img id="01-entrada-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
+      <img id="02-torniquetes" crossorigin="anonymous" src="assets/02torniquetes.jpg">
+      <img id="02-torniquetes-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
+      <img id="03-experimento" crossorigin="anonymous" src="assets/03experimento.jpg">
+      <img id="03-experimento-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
+      <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+    </a-assets>
+    <!-- 360-degree image. -->
+    <a-sky id="image-360" radius="500" src="#01-entrada" rotation="0 -130 0"
+          animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
+          animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
+    <!-- Image links. -->
+    <a-entity id="links" layout="type: line; margin: 1.1" 
+      position="4.2 1 -2.5" 
+      rotation="0 -45 0"
+      animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 2000; to: 4.2 1 -2.4; loop: true"
+      >
+      <a-entity template="src: #link" data-src="#02-torniquetes" data-thumb="#02-torniquetes-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#01-entrada" data-thumb="#01-entrada-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#03-experimento" data-thumb="#03-experimento-thumb"></a-entity>
+    </a-entity>
+    <!-- Camera + cursor. -->
+    <a-entity camera look-controls>
+      <a-cursor
+        id="cursor"
         
-        font="kelsonsans"
-        value="Bienvenido" 
-        width="3" 
-        position="0.1 1.45 -1.6"
-        rotation="0 -45 0.2">
-      </a-text>
+        animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 2 2 2; dur: 150"
+        animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
+        animation__clickreset="property: scale; to: 1 1 1; dur: 1000; startEvents: animationcomplete__click"
+        event-set__mouseenter="_event: mouseenter; color: blue"
+        event-set__mouseleave="_event: mouseleave; color: #C5911E"
+        raycaster="objects: .link">
+      </a-cursor>
+    </a-entity>
+  </a-scene>
 
-      <a-assets>
-        <!-- Audio. -->
-        <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
-        <!-- Images. -->
-        <img id="01entrada" crossorigin="anonymous" src="assets/01entrada.JPG">
-        <img id="01-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
-        <!-- <img id="02torniquetes" crossorigin="anonymous" src="assets/02torniquetes.jpg">
-        <img id="02-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
-        <img id="03experimento" crossorigin="anonymous" src="assets/03experimento.jpg">
-        <img id="03-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg"> -->
-      </a-assets>
-
-      <!-- 360-degree image. -->
-      <a-sky id="image-360" src="#01entrada" rotation="0 -130 0" radius="500"></a-sky>
-
-      <!-- Link template we will build. -->
-      <a-entity 
-        class="link"
-        geometry="primitive: plane; height: 1; width: 1"
-        material="shader: flat; color: #C5911E; src: #01-thumb"
-        position="3.5 2 -2.5"
-        rotation="0 -45 0.2"
-        sound="on: click; src: #click-sound"
-        animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 3.4 2 -2.4; loop: true">
-      ></a-entity>
-
-      <!-- Camera + Cursor. -->
-      <a-camera>
-        <a-cursor
-          id="cursor"
-          animation__click="property: scale; from: 0.1 0.1 0.1; to: 1 1 1; easing: easeInCubic; dur: 150; startEvents: click"
-          animation__clickreset="property: scale; to: 0.1 0.1 0.1; dur: 1; startEvents: animationcomplete__click"
-          animation__fusing="property: scale; from: 1 1 1; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: fusing"
-          ></a-cursor>
-      </a-camera>
-    </a-scene>
-  </div>
-</main>
 
 <footer class="">
   <nav id="menuSecundario" class="navbar fixed-bottom navbar-expand navbar-dark bg-dark">
@@ -116,4 +128,3 @@
 
 </body>
 </html>
-

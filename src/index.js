@@ -5,7 +5,7 @@ import './main.scss';
 import * as bootstrap from 'bootstrap';
 
 // Require A-frame
-// require('aframe');
+//const aframe = require('aframe');
 
 //Images
 import './js/images';
